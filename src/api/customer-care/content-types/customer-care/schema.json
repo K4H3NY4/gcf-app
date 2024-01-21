@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "customer_cares",
+  "info": {
+    "singularName": "customer-care",
+    "pluralName": "customer-cares",
+    "displayName": "Customer care"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Email": {
+      "type": "email"
+    },
+    "Subject": {
+      "type": "enumeration",
+      "enum": [
+        "Complain",
+        "Complement",
+        "Others"
+      ]
+    },
+    "Message": {
+      "type": "blocks"
+    }
+  }
+}

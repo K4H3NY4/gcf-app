@@ -362,6 +362,38 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiCustomerCareCustomerCare extends Schema.CollectionType {
+  collectionName: 'customer_cares';
+  info: {
+    singularName: 'customer-care';
+    pluralName: 'customer-cares';
+    displayName: 'Customer care';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Email: Attribute.Email;
+    Subject: Attribute.Enumeration<['Complain', 'Complement', 'Others']>;
+    Message: Attribute.Blocks;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::customer-care.customer-care',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::customer-care.customer-care',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiSpeakerSpeaker extends Schema.CollectionType {
   collectionName: 'speakers';
   info: {
@@ -809,6 +841,7 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::customer-care.customer-care': ApiCustomerCareCustomerCare;
       'api::speaker.speaker': ApiSpeakerSpeaker;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
