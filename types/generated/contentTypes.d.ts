@@ -786,6 +786,7 @@ export interface ApiAttractionAttraction extends Schema.CollectionType {
     >;
     workingHours: Attribute.String;
     Info: Attribute.Blocks;
+    gallery: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
