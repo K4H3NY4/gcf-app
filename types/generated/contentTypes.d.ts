@@ -362,69 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiCustomerCareCustomerCare extends Schema.CollectionType {
-  collectionName: 'customer_cares';
-  info: {
-    singularName: 'customer-care';
-    pluralName: 'customer-cares';
-    displayName: 'Customer care';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Email: Attribute.Email;
-    Subject: Attribute.Enumeration<['Complain', 'Complement', 'Others']>;
-    Message: Attribute.Blocks;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::customer-care.customer-care',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::customer-care.customer-care',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiSpeakerSpeaker extends Schema.CollectionType {
-  collectionName: 'speakers';
-  info: {
-    singularName: 'speaker';
-    pluralName: 'speakers';
-    displayName: 'Speaker';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    Name: Attribute.String & Attribute.Required;
-    Picture: Attribute.Media;
-    Bio: Attribute.Blocks & Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::speaker.speaker',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::speaker.speaker',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -831,6 +768,145 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiAttractionAttraction extends Schema.CollectionType {
+  collectionName: 'attractions';
+  info: {
+    singularName: 'attraction';
+    pluralName: 'attractions';
+    displayName: 'Attraction';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    Name: Attribute.String;
+    Category: Attribute.Enumeration<['Indoors', 'Outdoors', 'Entertainment']>;
+    workingHours: Attribute.String;
+    Info: Attribute.Blocks;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::attraction.attraction',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::attraction.attraction',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCustomerCareCustomerCare extends Schema.CollectionType {
+  collectionName: 'customer_cares';
+  info: {
+    singularName: 'customer-care';
+    pluralName: 'customer-cares';
+    displayName: 'Customer care';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Email: Attribute.Email;
+    Subject: Attribute.Enumeration<['Complain', 'Complement', 'Others']>;
+    Message: Attribute.Blocks;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::customer-care.customer-care',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::customer-care.customer-care',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProgramProgram extends Schema.CollectionType {
+  collectionName: 'programs';
+  info: {
+    singularName: 'program';
+    pluralName: 'programs';
+    displayName: 'Program';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    Day: Attribute.String;
+    Date: Attribute.Time;
+    startTime: Attribute.Time;
+    endTime: Attribute.Time;
+    eventName: Attribute.String;
+    speakers: Attribute.Relation<
+      'api::program.program',
+      'oneToMany',
+      'api::speaker.speaker'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::program.program',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::program.program',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSpeakerSpeaker extends Schema.CollectionType {
+  collectionName: 'speakers';
+  info: {
+    singularName: 'speaker';
+    pluralName: 'speakers';
+    displayName: 'Speaker';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    Name: Attribute.String & Attribute.Required;
+    Picture: Attribute.Media;
+    Bio: Attribute.Blocks & Attribute.Required;
+    program: Attribute.Relation<
+      'api::speaker.speaker',
+      'manyToOne',
+      'api::program.program'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::speaker.speaker',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::speaker.speaker',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -841,8 +917,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::customer-care.customer-care': ApiCustomerCareCustomerCare;
-      'api::speaker.speaker': ApiSpeakerSpeaker;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -851,6 +925,10 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::attraction.attraction': ApiAttractionAttraction;
+      'api::customer-care.customer-care': ApiCustomerCareCustomerCare;
+      'api::program.program': ApiProgramProgram;
+      'api::speaker.speaker': ApiSpeakerSpeaker;
     }
   }
 }

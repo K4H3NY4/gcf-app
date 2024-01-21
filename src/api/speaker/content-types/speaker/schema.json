@@ -25,6 +25,12 @@
     "Bio": {
       "type": "blocks",
       "required": true
+    },
+    "program": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::program.program",
+      "inversedBy": "speakers"
     }
   }
 }

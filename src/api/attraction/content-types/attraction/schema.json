@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "attractions",
+  "info": {
+    "singularName": "attraction",
+    "pluralName": "attractions",
+    "displayName": "Attraction"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Category": {
+      "type": "enumeration",
+      "enum": [
+        "Indoors",
+        "Outdoors",
+        "Entertainment"
+      ]
+    },
+    "workingHours": {
+      "type": "string"
+    },
+    "Info": {
+      "type": "blocks"
+    }
+  }
+}
