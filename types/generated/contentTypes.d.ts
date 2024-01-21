@@ -845,7 +845,7 @@ export interface ApiProgramProgram extends Schema.CollectionType {
   };
   attributes: {
     Day: Attribute.String;
-    Date: Attribute.Time;
+    Date: Attribute.Date;
     startTime: Attribute.Time;
     endTime: Attribute.Time;
     eventName: Attribute.String;

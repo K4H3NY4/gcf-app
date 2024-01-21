@@ -16,7 +16,7 @@
       "type": "string"
     },
     "Date": {
-      "type": "time"
+      "type": "date"
     },
     "startTime": {
       "type": "time"
