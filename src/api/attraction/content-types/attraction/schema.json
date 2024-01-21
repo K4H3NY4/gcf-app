@@ -4,7 +4,8 @@
   "info": {
     "singularName": "attraction",
     "pluralName": "attractions",
-    "displayName": "Attraction"
+    "displayName": "Attraction",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -19,7 +20,8 @@
       "enum": [
         "Indoors",
         "Outdoors",
-        "Entertainment"
+        "Entertainment",
+        "Accomodation"
       ]
     },
     "workingHours": {

@@ -774,13 +774,16 @@ export interface ApiAttractionAttraction extends Schema.CollectionType {
     singularName: 'attraction';
     pluralName: 'attractions';
     displayName: 'Attraction';
+    description: '';
   };
   options: {
     draftAndPublish: false;
   };
   attributes: {
     Name: Attribute.String;
-    Category: Attribute.Enumeration<['Indoors', 'Outdoors', 'Entertainment']>;
+    Category: Attribute.Enumeration<
+      ['Indoors', 'Outdoors', 'Entertainment', 'Accomodation']
+    >;
     workingHours: Attribute.String;
     Info: Attribute.Blocks;
     createdAt: Attribute.DateTime;
